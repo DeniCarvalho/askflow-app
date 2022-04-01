@@ -3,9 +3,14 @@
   "email": "E-email",
   "password": "Password",
   "signIn": "Sign in",
-  "accessWith": "Or access with",
-  "required": "Required field",
-  "invalidEmail": "Invalid email",
+  "signInEmail": "Login with your email",
+  "signInFacebook": "Sign in with Facebook",
+  "signInGoogle": "Sign in with Google",
   "forgotYourPassword": "Forgot your password?",
-  "newEvent": "New event"
+  "dontHaveAccount": "Don't have an account?",
+
+  "newEvent": "New event",
+
+  "required": "Required field",
+  "invalidEmail": "Invalid email"
 }

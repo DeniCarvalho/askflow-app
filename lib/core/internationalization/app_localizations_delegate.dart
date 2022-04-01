@@ -1,5 +1,5 @@
-import 'package:askflow/internationalization/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'app_localizations.dart';
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   // This delegate instance will never change (it doesn't even have fields!)

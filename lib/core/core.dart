@@ -4,3 +4,4 @@ export './app_widget.dart';
 export './components/components.dart';
 export './theme/theme.dart';
 export './utils/utils.dart';
+export './internationalization/internationalization.dart';

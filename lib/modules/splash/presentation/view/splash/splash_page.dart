@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rive/rive.dart';
-import 'package:video_player/video_player.dart';
 
 import '../../../../../core/core.dart';
 import '../../presentation.dart';
@@ -18,19 +16,15 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> with PostFrameMixin {
-  late VideoPlayerController _controller;
   late bool endAnimation = false;
 
   @override
   void initState() {
     super.initState();
-    // _controller = VideoPlayerController.asset(AppVideos.background);
-    // _controller.addListener(() {
-    //   setState(() {});
-    // });
-    // _controller.setLooping(true);
-    // _controller.initialize().then((_) => setState(() {}));
-    // _controller.play();
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: [SystemUiOverlay.top],
+    );
     postFrame(_navigateAfterStart);
   }
 
@@ -42,7 +36,7 @@ class _SplashPageState extends State<SplashPage> with PostFrameMixin {
 
   Future<void> _navigateAfterStart() async {
     await Future.delayed(const Duration(seconds: 2));
-    Nav.navigate(SplashRoutes.home);
+    Nav.navigate(SplashRoutes.login);
     // SystemChrome.restoreSystemUIOverlays();
   }
 
@@ -57,40 +51,21 @@ class _SplashPageState extends State<SplashPage> with PostFrameMixin {
           backgroundColor: Colors.transparent,
         ),
       ),
-      body: GradientContainer(
-        gradient: AppGradients.background,
-        body: _body(),
-      ),
-    );
-    // :
-    // _backgroundVideo();
-  }
-
-  Widget _backgroundVideo() {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
       body: Stack(
         fit: StackFit.expand,
-        children: <Widget>[
-          VideoPlayer(
-            _controller,
+        children: [
+          GradientContainer(
+            gradient: AppGradients.background,
           ),
-          _body()
+          Align(
+            alignment: Alignment.center,
+            child: LogoComponent(
+              height: 65.responsiveHeight,
+              path: AppImages.logoFullLightEffect,
+            ),
+          ),
         ],
       ),
-    );
-  }
-
-  Widget _body() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        LogoComponent(
-          height: 65.responsiveHeight,
-          path: AppImages.logoFullLightEffect,
-        ),
-      ],
     );
   }
 }

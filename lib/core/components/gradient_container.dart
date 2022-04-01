@@ -8,7 +8,7 @@ class GradientContainer extends StatelessWidget {
   ///
   /// Body widget
   ///
-  final Widget body;
+  final Widget? body;
 
   final Gradient gradient;
 
@@ -16,7 +16,7 @@ class GradientContainer extends StatelessWidget {
   /// Constructor
   ///
   const GradientContainer({
-    required this.body,
+    this.body,
     required this.gradient,
     Key? key,
   }) : super(key: key);
@@ -25,7 +25,7 @@ class GradientContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox.expand(
       child: Container(
-        child: SafeArea(child: body),
+        child: body != null ? SafeArea(child: body!) : null,
         decoration: BoxDecoration(
           gradient: gradient,
         ),

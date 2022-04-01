@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../../core/core.dart';
-import '../../../../../internationalization/internationalization.dart';
 import '../../../domain/domain.dart';
 
 class HomePage extends StatefulWidget {

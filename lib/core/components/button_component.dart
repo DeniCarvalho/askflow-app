@@ -6,6 +6,8 @@ class ButtonComponent extends StatelessWidget {
   final bool enabled;
   final VoidCallback? onPressed;
   final bool loading;
+  final Color? bgColor;
+  final Color? fgColor;
   final Color? colorLoading;
   final String? text;
   final Widget? child;
@@ -13,11 +15,17 @@ class ButtonComponent extends StatelessWidget {
   final bool isDark;
   final MaterialStateProperty<EdgeInsetsGeometry?>? padding;
   final double? fontSize;
+  final double? elevation;
+  final double? borderRadius;
+  final Color? shadowColor;
+  final Color? overlayColor;
   const ButtonComponent({
     Key? key,
     this.onPressed,
-    this.enabled = false,
+    this.enabled = true,
     this.loading = false,
+    this.bgColor,
+    this.fgColor,
     this.colorLoading,
     this.text,
     this.child,
@@ -25,6 +33,10 @@ class ButtonComponent extends StatelessWidget {
     this.isDark = false,
     this.padding,
     this.fontSize,
+    this.elevation,
+    this.borderRadius,
+    this.shadowColor,
+    this.overlayColor,
   })  : assert(
             text != null || child != null, 'Required text or child parameters'),
         super(key: key);
@@ -45,16 +57,17 @@ class ButtonComponent extends StatelessWidget {
             padding: padding ??
                 MaterialStateProperty.all(EdgeInsets.all(12.responsiveWidth)),
             backgroundColor: MaterialStateProperty.all(
-                isDark ? AppColors.light : AppColors.tertiary),
-            overlayColor: MaterialStateProperty.all(AppColors.primary),
+              bgColor != null ? bgColor! :  isDark ? AppColors.light : AppColors.primary),
+            overlayColor: MaterialStateProperty.all(overlayColor ?? AppColors.light.withOpacity(0.1)),
             foregroundColor: MaterialStateProperty.all(
-                !isDark ? AppColors.light : AppColors.tertiary),
+               fgColor != null ? fgColor! : !isDark ? AppColors.light : AppColors.primary),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50),
+                borderRadius: BorderRadius.circular(borderRadius ?? 50),
               ),
             ),
-            elevation: MaterialStateProperty.all(4),
+            elevation: MaterialStateProperty.all(elevation ?? 4),
+            shadowColor: MaterialStateProperty.all(shadowColor),
           ),
     );
   }

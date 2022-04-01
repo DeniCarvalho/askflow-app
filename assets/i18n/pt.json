@@ -3,10 +3,14 @@
   "email": "E-mail",
   "password": "Senha",
   "signIn": "Entrar",
-  "accessWith": "Ou acessar com",
-  "required": "Campo obrigatório",
-  "invalidEmail": "E-mail inválido",
-  "office365": "Office 365",
+  "signInEmail": "Login com seu email",
+  "signInFacebook": "Entrar com Facebook",
+  "signInGoogle": "Entrar com Google",
   "forgotYourPassword": "Esqueceu sua senha?",
-  "newEvent": "Novo evento"
+  "dontHaveAccount": "Não possui uma conta?",
+
+  "newEvent": "Novo evento",
+
+  "required": "Campo obrigatório",
+  "invalidEmail": "E-mail inválido"
 }

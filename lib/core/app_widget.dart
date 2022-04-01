@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../internationalization/app_localizations.dart';
 import 'core.dart';
 
 class AppWidget extends StatefulWidget {
@@ -34,8 +33,8 @@ class _AppWidgetState extends State<AppWidget> {
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light,
         systemNavigationBarIconBrightness: Brightness.light,
-        systemNavigationBarColor: Color(0xFF031226),
-        systemNavigationBarDividerColor: Color(0xFF031226),
+        systemNavigationBarColor: AppColors.primary,
+        systemNavigationBarDividerColor: AppColors.primary,
       ),
     );
     return GestureDetector(
