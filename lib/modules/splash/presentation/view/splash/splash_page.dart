@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../../../../core/core.dart';
 import '../../presentation.dart';
@@ -21,10 +20,10 @@ class _SplashPageState extends State<SplashPage> with PostFrameMixin {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.manual,
-      overlays: [SystemUiOverlay.top],
-    );
+    // SystemChrome.setEnabledSystemUIMode(
+    //   SystemUiMode.manual,
+    //   overlays: [SystemUiOverlay.top],
+    // );
     postFrame(_navigateAfterStart);
   }
 
