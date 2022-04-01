@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../core/core.dart';
+import 'login.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,11 +16,13 @@ class _LoginPageState extends State<LoginPage> {
   late VideoPlayerController _controller;
   late bool isLoadVideo;
   late bool isLoadPage;
+  late bool showForm;
 
   @override
   void initState() {
     isLoadVideo = false;
     isLoadPage = false;
+    showForm = false;
     super.initState();
     loadPage();
     // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
@@ -60,49 +63,79 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.primary,
-      extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: Size.zero,
-        child: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
+    return WillPopScope(
+      onWillPop: () async {
+        if (showForm) {
+          setState(() {
+            showForm = false;
+          });
+          return Future<bool>.value(false);
+        }
+        return Future<bool>.value(true);
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.primary,
+        extendBodyBehindAppBar: true,
+        resizeToAvoidBottomInset: false,
+        appBar: PreferredSize(
+          preferredSize: Size.zero,
+          child: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+          ),
+        ),
+        body: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 600),
+              child: isLoadVideo
+                  ? BackgroundVideoComponent(
+                      controller: _controller,
+                      isBlur: !isLoadPage || showForm,
+                      // isFilter: showForm,
+                      blur: showForm ? 20.0 : 6.0,
+                    )
+                  : GradientContainer(
+                      gradient: AppGradients.background,
+                    ),
+            ),
+            AnimatedAlign(
+              duration: const Duration(seconds: 2),
+              curve: Curves.fastOutSlowIn,
+              alignment: isLoadVideo && isLoadPage
+                  ? const Alignment(0.0, -0.8)
+                  : Alignment.center,
+              child: LogoComponent(
+                height: 65.responsiveHeight,
+                path: AppImages.logoFullLightEffect,
+                isHero: false,
+              ),
+            ),
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 200),
+              child: _body(),
+            ),
+          ],
         ),
       ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 600),
-            child: isLoadVideo
-                ? BackgroundVideoComponent(
-                    controller: _controller,
-                    isBlur: !isLoadPage,
-                  )
-                : GradientContainer(
-                    gradient: AppGradients.background,
-                  ),
-          ),
-          AnimatedAlign(
-            duration: const Duration(seconds: 2),
-            curve: Curves.fastOutSlowIn,
-            alignment: isLoadVideo && isLoadPage
-                ? const Alignment(0.0, -0.8)
-                : Alignment.center,
-            child: LogoComponent(
-              height: 65.responsiveHeight,
-              path: AppImages.logoFullLightEffect,
-              isHero: false,
-            ),
-          ),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 900),
-            child: isLoadVideo && isLoadPage ? _optionSignIn : null,
-          ),
-        ],
-      ),
     );
+  }
+
+  Widget? _body() {
+    if (!isLoadVideo || !isLoadPage) return null;
+
+    if (!showForm) {
+      return _optionSignIn;
+    } else {
+      return LoginForm(
+        back: () {
+          setState(() {
+            showForm = false;
+          });
+        },
+      );
+    }
   }
 
   Widget get _optionSignIn => Align(
@@ -118,10 +151,14 @@ class _LoginPageState extends State<LoginPage> {
               ButtonComponent(
                 text: 'signInEmail'.i18n(context),
                 bgColor: const Color(0xFFf2c513),
-                fgColor: Colors.black,
+                fgColor: AppColors.primary,
                 borderRadius: 8,
                 overlayColor: AppColors.light.withOpacity(0.3),
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    showForm = true;
+                  });
+                },
               ),
               const SizedBox(
                 height: 8,

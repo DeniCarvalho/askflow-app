@@ -62,19 +62,19 @@ class TextFieldComponent extends StatelessWidget {
         labelText: label,
         hintText: placeholder,
         hintStyle: const TextStyle(
-          color: AppColors.system,
+          color: AppColors.primary,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             width: 1,
-            color: AppColors.system,
+            color: AppColors.transparent,
           ),
           borderRadius: BorderRadius.circular(radius),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             width: 1,
-            color: AppColors.primary,
+            color: AppColors.tertiary,
           ),
           borderRadius: BorderRadius.circular(radius),
         ),
