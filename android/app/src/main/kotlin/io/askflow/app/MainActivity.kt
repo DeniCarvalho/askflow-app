@@ -1,4 +1,4 @@
-package com.askflow.io
+package io.askflow.app
 
 import io.flutter.embedding.android.FlutterActivity
 

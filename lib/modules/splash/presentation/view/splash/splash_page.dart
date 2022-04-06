@@ -24,6 +24,7 @@ class _SplashPageState extends State<SplashPage> with PostFrameMixin {
     //   SystemUiMode.manual,
     //   overlays: [SystemUiOverlay.top],
     // );
+
     postFrame(_navigateAfterStart);
   }
 

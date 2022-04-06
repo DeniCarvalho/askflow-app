@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../core/core.dart';
+import '../../presentation.dart';
 
 class LoginForm extends StatefulWidget {
   final VoidCallback? back;
@@ -74,12 +75,8 @@ class _LoginFormState extends State<LoginForm> {
                 FocusScope.of(context).requestFocus(_passFocus);
               },
               validator: (val) {
-                if (val == null || val.isEmpty) return 'Campo obrigatório';
-
-                bool emailValid = RegExp(
-                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                    .hasMatch(val);
-                if (!emailValid) return 'invalidEmail'.i18n(context);
+                if (val == null || val.isEmpty) return 'required'.i18n(context);
+                if (!val.validateEmail()) return 'invalidEmail'.i18n(context);
 
                 return null;
               },
@@ -95,9 +92,7 @@ class _LoginFormState extends State<LoginForm> {
               focusNode: _passFocus,
               onFieldSubmitted: (val) {},
               validator: (val) {
-                if (val == null || val.isEmpty) {
-                  return 'required'.i18n(context);
-                }
+                if (val == null || val.isEmpty) return 'required'.i18n(context);
 
                 return null;
               },
@@ -106,14 +101,13 @@ class _LoginFormState extends State<LoginForm> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => Nav.pushNamed(AuthRoutes.forgot.asAuthChild),
                   child: Text(
                     'forgotYourPassword'.i18n(context),
                   ),
                   style: ButtonStyle(
-                    // backgroundColor:
-                    //     MaterialStateProperty.all(AppColors.transparent),
-                    foregroundColor:  MaterialStateProperty.all(AppColors.tertiary),
+                    foregroundColor:
+                        MaterialStateProperty.all(AppColors.tertiary),
                   ),
                 ),
               ],
@@ -127,7 +121,7 @@ class _LoginFormState extends State<LoginForm> {
               loading: _loading,
               enabled: !_loading,
               bgColor: const Color(0xFFf2c513),
-              fgColor: AppColors.primary,
+              fgColor: AppColors.light,
               borderRadius: 8,
               overlayColor: AppColors.light.withOpacity(0.3),
             ),
@@ -135,8 +129,13 @@ class _LoginFormState extends State<LoginForm> {
               height: 5.responsiveHeight,
             ),
             TextButton(
-              onPressed: widget.back,
-              child: const Text('Já tenho uma conta'),
+              onPressed: (){
+                 FocusScope.of(context).requestFocus(FocusNode());
+                 if(widget.back != null) {
+                   widget.back!();
+                 }
+              },
+              child: Text('back'.i18n(context)),
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all(AppColors.light),
               ),

@@ -1,9 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'core.dart';
+
 
 class AppWidget extends StatefulWidget {
   /// Creates a [AppWidget]
@@ -13,8 +15,10 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends State<AppWidget> {
+
   @override
   void initState() {
+
     super.initState();
   }
 
@@ -23,6 +27,11 @@ class _AppWidgetState extends State<AppWidget> {
   void didChangeDependencies() {
     // precacheImage(AssetImage(AppImages.logo), context);
     super.didChangeDependencies();
+  }
+
+  @override
+  dispose() {
+    super.dispose();
   }
 
   @override

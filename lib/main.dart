@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:askflow/core/app_main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -15,6 +16,8 @@ class MyHttpOverrides extends HttpOverrides {
 void main() async {
   HttpOverrides.global = MyHttpOverrides();
   Paint.enableDithering = true;
-  Intl.defaultLocale = Platform.localeName;
+  if (!kIsWeb) {
+    Intl.defaultLocale = Platform.localeName;
+  }
   await runBaseApp();
 }

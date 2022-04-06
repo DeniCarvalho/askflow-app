@@ -16,6 +16,16 @@ class AuthRoutes {
   /// Login route
   ///
   static const String login = '/login';
+
+  ///
+  /// Forgot password route
+  ///
+  static const String forgot = '/forgot-password';
+
+  ///
+  /// Recovery password route
+  ///
+  static const String reset = '/reset-password/:token';
 }
 
 ///

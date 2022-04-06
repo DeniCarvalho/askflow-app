@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                   ? BackgroundVideoComponent(
                       controller: _controller,
                       isBlur: !isLoadPage || showForm,
-                      // isFilter: showForm,
+                      isFilter: showForm,
                       blur: showForm ? 20.0 : 6.0,
                     )
                   : GradientContainer(

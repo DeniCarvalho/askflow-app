@@ -8,9 +8,15 @@
   "signInGoogle": "Entrar com Google",
   "forgotYourPassword": "Esqueceu sua senha?",
   "dontHaveAccount": "Não possui uma conta?",
+  "haveAccount": "Já tenho uma conta",
+
+  "recoveryPassword": "Recuperar senha",
+  "recoveryPasswordMsg": "Para recuperar sua senha enviaremos um email com um link de recuperação. Informe seu email de cadastro.",
 
   "newEvent": "Novo evento",
 
   "required": "Campo obrigatório",
-  "invalidEmail": "E-mail inválido"
+  "invalidEmail": "E-mail inválido",
+  "confirm": "Confirmar",
+  "back": "Voltar"
 }

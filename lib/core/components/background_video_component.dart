@@ -53,8 +53,8 @@ class BackgroundVideoComponent extends StatelessWidget {
                     ? BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
                         child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.2),
+                          decoration: const BoxDecoration(
+                            color: Colors.transparent,
                           ),
                         ),
                       )
@@ -63,30 +63,6 @@ class BackgroundVideoComponent extends StatelessWidget {
             ),
           ),
         )
-        // Container(
-        //   decoration: BoxDecoration(
-        //     image: DecorationImage(
-        //       image: image,
-        //       fit: BoxFit.fill,
-        //       colorFilter: isFilter
-        //           ? ColorFilter.mode(
-        //               Colors.black.withOpacity(1.0),
-        //               BlendMode.dstATop,
-        //             )
-        //           : null,
-        //     ),
-        //   ),
-        //   child: isBlur
-        //       ? BackdropFilter(
-        //           filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
-        //           child: Container(
-        //             decoration: BoxDecoration(
-        //               color: Colors.black.withOpacity(0.2),
-        //             ),
-        //           ),
-        //         )
-        //       : Container(),
-        // ),
       ],
     );
   }

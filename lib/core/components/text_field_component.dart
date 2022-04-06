@@ -74,7 +74,7 @@ class TextFieldComponent extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             width: 1,
-            color: AppColors.tertiary,
+            color: AppColors.secundary,
           ),
           borderRadius: BorderRadius.circular(radius),
         ),
